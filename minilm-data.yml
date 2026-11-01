@@ -1,0 +1,16 @@
+services:
+  minilm:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-arm64-1.9
+    container_name: minilm
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - minilm-data:/data
+    command:
+      - --model-id
+      - sentence-transformers/all-MiniLM-L6-v2
+
+volumes:
+  minilm-data:
+    name: minilm-data
